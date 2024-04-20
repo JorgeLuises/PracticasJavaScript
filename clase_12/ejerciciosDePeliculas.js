@@ -633,6 +633,28 @@ const getActorsAge = (array) => {
 console.log (getActorsAge(movies));
 
 //Ejercicio 13:
-
+const actorMovies = (array,actorName) => {
+  let result = array.reduce((accum, movie) => {
+    return movie.protagonists.some((actor) => actor.name.toLowerCase() === actorName.toLowerCase())
+    ? accum + 1 
+    : accum;
+  }, 0);
+  return result;
+};
+console.log (actorMovies(movies, "Harrison Ford"));
 
 //Ejercicio 14:
+/* {
+          title: "{titulo_de_la_película} - {director} - {duración}",
+          trimmedSynopsis: "{sinopsis}..."
+      }*/
+const getNewArray = (array) => {
+  let result = array.map((movie) => {
+    let {title, director, duration, synopsis} = movie;
+    let trimmedSynopsys = `${synopsis.split(" ", 10).join(" ")}...`;
+    let Title = `${title} - ${director} - ${duration},`; 
+    return {Title, trimmedSynopsys};
+  });
+  return result;
+};
+console.log (getNewArray(movies));
